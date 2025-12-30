@@ -1,6 +1,5 @@
 package io.github.equinoxelectronic.rendering;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -26,8 +25,11 @@ public class Renderer {
     private static final Logger logger = new Logger("Chancellor Renderer", Logger.DEBUG);
 
     // The world dimensions in meters
-    private static final float WORLD_WIDTH = 16f;  // 16 meters wide (standard for 16:9 aspect ratio)
-    private static final float WORLD_HEIGHT = 9f;  // 9 meters high
+    public static final float WORLD_WIDTH = 16f;  // 16 meters wide (standard for 16:9 aspect ratio)
+    public static final float WORLD_HEIGHT = 9f;  // 9 meters high
+
+    public static final float WORLD_CENTER_WIDTH = WORLD_WIDTH / 2f; // Center X - half width
+    public static final float WORLD_CENTER_HEIGHT = WORLD_HEIGHT / 2f; // Center Y - half height
 
     // Pixels per meter (for conversion between world and screen coordinates)
     private static final float PPM = 100f;  // 100 pixels = 1 meter
@@ -103,13 +105,11 @@ public class Renderer {
         TextureRegion logo = AssetManager.getInstance().getTextureRegion("libgdx.png");
 
         if (logo != null) {
-            // Draw the logo at the center of the world with a size of 2x2 meters
-            float logoX = WORLD_WIDTH / 2f; // Center X - half width
-            float logoY = WORLD_HEIGHT / 2f; // Center Y - half height
-            drawTexturePreserveAspect(batch, logo, logoX, logoY, 2f, false);
+            // Draw the logo at the center of the world
+            drawTexturePreserveAspect(batch, logo, WORLD_CENTER_WIDTH, WORLD_CENTER_HEIGHT, 2f, false);
 
             // Draw text to indicate coordinates (would need a BitmapFont in a real implementation)
-            logger.debug("Logo drawn at world coordinates: (" + logoX + "m, " + logoY + "m)");
+            logger.debug("Logo drawn at world coordinates: (" + WORLD_CENTER_WIDTH + "m, " + WORLD_CENTER_HEIGHT + "m)");
             logger.debug("Logo size: 2m x 2m");
         }
     }
