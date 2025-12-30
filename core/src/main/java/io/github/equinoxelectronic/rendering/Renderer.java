@@ -56,8 +56,9 @@ public class Renderer {
         // Set the camera position to the center of the world
         camera.position.set(WORLD_WIDTH / 2f, WORLD_HEIGHT / 2f, 0);
 
-        // Enable debug mode by default to show the example
+        //TODO remove this eventually
         debugMode = true;
+
         logger.info("Debug mode enabled by default");
 
         logger.info("Renderer initialized with world dimensions: " +
@@ -103,9 +104,9 @@ public class Renderer {
 
         if (logo != null) {
             // Draw the logo at the center of the world with a size of 2x2 meters
-            float logoX = WORLD_WIDTH / 2f - 1f; // Center X - half width
-            float logoY = WORLD_HEIGHT / 2f - 1f; // Center Y - half height
-            batch.draw(logo, logoX, logoY, 2f, 2f); // 2x2 meters
+            float logoX = WORLD_WIDTH / 2f; // Center X - half width
+            float logoY = WORLD_HEIGHT / 2f; // Center Y - half height
+            drawTexturePreserveAspect(batch, logo, logoX, logoY, 2f, false);
 
             // Draw text to indicate coordinates (would need a BitmapFont in a real implementation)
             logger.debug("Logo drawn at world coordinates: (" + logoX + "m, " + logoY + "m)");
@@ -208,6 +209,35 @@ public class Renderer {
     public static float getPixelsPerMeter() {
         return PPM;
     }
+
+    /**
+     * Draws a texture region with uniform scaling while preserving aspect ratio.
+     *
+     * @param batch The SpriteBatch to use for rendering
+     * @param texture The texture region to draw
+     * @param x The x position in world coordinates (meters)
+     * @param y The y position in world coordinates (meters)
+     * @param scale The uniform scale factor in meters (width or height, whichever is specified)
+     * @param useWidth If true, scale parameter is used for width, if false it's used for height
+     */
+    public static void drawTexturePreserveAspect(SpriteBatch batch, TextureRegion texture,
+                                                 float x, float y, float scale, boolean useWidth) {
+        if (texture == null) return;
+
+        float aspectRatio = (float) texture.getRegionWidth() / texture.getRegionHeight();
+        float width, height;
+
+        if (useWidth) {
+            width = scale;
+            height = scale / aspectRatio;
+        } else {
+            height = scale;
+            width = scale * aspectRatio;
+        }
+
+        batch.draw(texture, x - width / 2f, y - height / 2f, width, height);
+    }
+
 
     /**
      * Disposes of all resources used by the renderer.
