@@ -8,4 +8,5 @@ Created AssetManager.java
 Finished AssetManager.java
 Added an error display system
 
-### ADD KEYBIND SYSTEM
+### Day 3:
+Added a Keybind system

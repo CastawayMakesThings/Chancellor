@@ -13,7 +13,7 @@ Made in LibGDX.
 That's it for now.
 
 ## Current progress
-Just started. I have an asset and error-catching system, but that's it. Next up is Keybinds, and then rendering.
+Just started. I have a keybind, asset and error-catching system, but that's it. Next up is rendering.
 
 ## Contributions.
 I wont be taking contributions as I don't want to waste anybody's time. If this project ends up getting abandoned, I wouldn't want anybody else's work to go down the drain.

@@ -1,11 +1,14 @@
 package io.github.equinoxelectronic;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.ScreenUtils;
+import io.github.equinoxelectronic.controlling.KeyBindManager;
 import io.github.equinoxelectronic.utility.AssetManager;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
